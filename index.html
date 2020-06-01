@@ -152,6 +152,78 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Redux官方教程/Redux教程第一章：快速开始" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/baiyi.github.io/2020/06/01/Redux%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B/Redux%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/">快速开始</a>
+    </h1>
+  
+
+        
+        <a href="/baiyi.github.io/2020/06/01/Redux%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B/Redux%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/" class="archive-article-date">
+  	<time datetime="2020-06-01T09:23:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#快速开始<br><a href="https://github.com/reduxjs/react-redux" target="_blank" rel="noopener">React Redux</a> 是<a href="https://reactjs.org/" target="_blank" rel="noopener">React</a>官方认可的<a href="https://redux.js.org/" target="_blank" rel="noopener">Redux</a>,他可以让你的React组件在一个React仓库里面读取数据，并且发送Action给仓库来进行更新数据。<br>#安装<br>React Redux 7.1 需要依赖 React 16.8.3及以上的版本<br>给你的app使用 React Redux<br>终端项目根目录下执行以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-redux</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add react-redux</span><br></pre></td></tr></table></figure>
+<p>你需要<a href="https://redux-docs.netlify.com/introduction/installation" target="_blank" rel="noopener">安装Redux</a>并且<a href="https://redux-docs.netlify.com/recipes/configuring-your-store" target="_blank" rel="noopener">创建Redux的store</a><br>#Provider<br>React  Redux 提供了<Provider />，可以把创建好的Redux store获取到你的app其余的部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;</span><br><span class="line">import ReactDOM from &#39;react-dom&#39;</span><br><span class="line"></span><br><span class="line">import &#123; Provider &#125; from &#39;react-redux&#39;</span><br><span class="line">import store from &#39;.&#x2F;store&#39;</span><br><span class="line"></span><br><span class="line">import App from &#39;.&#x2F;App&#39;</span><br><span class="line"></span><br><span class="line">const rootElement &#x3D; document.getElementById(&#39;root&#39;)</span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store&#x3D;&#123;store&#125;&gt;</span><br><span class="line">    &lt;App &#x2F;&gt;</span><br><span class="line">  &lt;&#x2F;Provider&gt;,</span><br><span class="line">  rootElement</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>#connect()<br>React Redux提供了一个connect()方法，把你的React组件和store进行关联。<br>通常，你回用下面这种方法进行调用connect()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from &#39;react-redux&#39;</span><br><span class="line">import &#123; increment, decrement, reset &#125; from &#39;.&#x2F;actionCreators&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; const Counter &#x3D; ...</span><br><span class="line"></span><br><span class="line">const mapStateToProps &#x3D; (state &#x2F;*, ownProps*&#x2F;) &#x3D;&gt; &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    counter: state.counter</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mapDispatchToProps &#x3D; &#123; increment, decrement, reset &#125;</span><br><span class="line"></span><br><span class="line">export default connect(</span><br><span class="line">  mapStateToProps,</span><br><span class="line">  mapDispatchToProps</span><br><span class="line">)(Counter)</span><br></pre></td></tr></table></figure>
+
+<p>最近更新于 2019-6-22</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/baiyi.github.io/2020/06/01/Redux%E5%AE%98%E6%96%B9%E6%95%99%E7%A8%8B/Redux%E6%95%99%E7%A8%8B%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-第一篇博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
